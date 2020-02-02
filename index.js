@@ -2,8 +2,15 @@
 'use strict';
 
 function jsonPropsFilter(targetData, deletedKeys){
-    let convertJsonData;
-    if(targetData instanceof String){
+    if(!targetData){
+        throw new Error('undefined has specified as 1st parameter');
+    }
+    //shallow copy the data in order to keep original data
+    //NOTE: following semantics introduced from ES2016
+    //See; https://stackoverflow.com/questions/34504682/js-does-object-assign-create-deep-copy-or-shallow-copy
+    let convertJsonData = Object.assign({},targetData);
+    //console.log(`type of targetData ${typeof convertJsonData}`);
+    if(typeof targetData == 'string'){
         try{
            convertJsonData = JSON.parse(targetData);
         }catch(e){
@@ -11,31 +18,24 @@ function jsonPropsFilter(targetData, deletedKeys){
         }
 
     }
-    if(convertJsonData){
-        targetData = convertJsonData;
-    }
     if(Array.isArray(deletedKeys)){
         deletedKeys.forEach(element =>{
-            //console.log(`element is ${element}`)
             try{
-                delete targetData[element];
+                delete convertJsonData[element];
             }catch(e){
-                //console.log(`error caused reason ${e}`)
                 throw e;
             }
         });
     }else{
         try{
-            delete targetData[deletedKeys] 
+            delete convertJsonData[deletedKeys] 
         }catch(e){
-            //console.log(`error caused reason ${e}`)
             throw e;
         }
     }
 
-    return targetData;
+    return convertJsonData;
 }
-
 
 module.exports = jsonPropsFilter;
 module.exports.default = jsonPropsFilter;
