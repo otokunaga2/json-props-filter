@@ -1,0 +1,21 @@
+name: 'Setup Node.js Property Filtering'
+description: 'Setup a Node.js Property Filtering'
+author: 'Seiki Tokunaga'
+inputs:
+  always-auth:
+    description: 'Set always-auth in npmrc'
+    default: 'false'
+  node-version:
+    description: 'Version Spec of the version to use.  Examples: 10.x, 10.15.1, >=10.15.0'
+    default: '12.x'
+  registry-url:
+    description: 'TBD'
+  scope:
+    description: 'TBD'
+# Deprecated option, do not use. Will not be supported after October 1, 2019
+  version:
+    description: 'TBD'
+    deprecationMessage: 'TBD'
+runs:
+  using: 'node12'
+  main: 'index.js'
