@@ -1,42 +1,32 @@
 #!/usr/bin/env node
-'use strict';
 
-function jsonPropsFilter(targetData, deletedKeys){
-    if(!targetData){
-        throw new Error('undefined has specified as 1st parameter');
-    }
-    //shallow copy the data in order to keep original data
-    //NOTE: following semantics introduced from ES2016
-    //See; https://stackoverflow.com/questions/34504682/js-does-object-assign-create-deep-copy-or-shallow-copy
-    let convertJsonData = Object.assign({},targetData);
-    //console.log(`type of targetData ${typeof convertJsonData}`);
-    if(typeof targetData == 'string'){
-        try{
-           convertJsonData = JSON.parse(targetData);
-        }catch(e){
-            throw e;
-        }
+/**
+ * @param {targetData} target data (should be JSON format string or JSON object)
+ * @param {deletedKeys} string or string of lists to delete keys
+ * @return filtered JSON object
+ */
+function jsonPropsFilter(targetData, deletedKeys) {
+  if (!targetData) {
+    throw new Error('undefined has specified as 1st parameter');
+  }
+  // shallow copy the data in order to keep original data
+  // NOTE: following semantics introduced from ES2016
+  // See; https://stackoverflow.com/questions/34504682/js-does-object-assign-create-deep-copy-or-shallow-copy
+  let convertJsonData = { ...targetData };
+  // console.log(`type of targetData ${typeof convertJsonData}`);
+  if (typeof targetData === 'string') {
+    convertJsonData = JSON.parse(targetData);
+  }
+  if (Array.isArray(deletedKeys)) {
+    deletedKeys.forEach((element) => {
+      delete convertJsonData[element];
+    });
+  } else {
+    delete convertJsonData[deletedKeys];
+  }
 
-    }
-    if(Array.isArray(deletedKeys)){
-        deletedKeys.forEach(element =>{
-            try{
-                delete convertJsonData[element];
-            }catch(e){
-                throw e;
-            }
-        });
-    }else{
-        try{
-            delete convertJsonData[deletedKeys] 
-        }catch(e){
-            throw e;
-        }
-    }
-
-    return convertJsonData;
+  return convertJsonData;
 }
 
 module.exports = jsonPropsFilter;
 module.exports.default = jsonPropsFilter;
-
