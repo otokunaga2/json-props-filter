@@ -28,7 +28,7 @@ describe('Normal behavior test', () => {
   it('first arg is set as string data testing', () => {
     const expectedResult = { bar: 'baz' };
     const deletedKey = ['foo'];
-    console.log(`strArgument ${strArgument}`);
+    // console.log(`strArgument ${strArgument}`);
     const result = jsonPropsFilter(strArgument, deletedKey);
     assert.deepEqual(result, expectedResult, 'check the parameter is specified as string');
   });
