@@ -1,6 +1,8 @@
-JSON Property Filter
-====
+=======
+# json-props-filter
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/35bc7e2989224fef9ca7661c1d0f86a2)](https://app.codacy.com/manual/otokunaga2/json-props-filter?utm_source=github.com&utm_medium=referral&utm_content=otokunaga2/json-props-filter&utm_campaign=Badge_Grade_Dashboard)
 
+# Description
 JSON property sometimes have too many properties.
 So this module provides filtering unnecessary data.
 
