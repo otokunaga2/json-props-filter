@@ -37,8 +37,16 @@ describe('Normal behavior test', () => {
 describe('Exception behavior test', () => {
   it('undefined args error', () => {
     const badFirstArgFn = function () {
-      jsonPropsFilter(undefined, foo);
+      jsonPropsFilter(undefined, "foo");
     };
     expect(badFirstArgFn).to.throws(Error);
   });
+
+  it('number arg is set as 1st parameter error', () => {
+    const badUnexpectedFirstArgTypeFn = function () {
+      jsonPropsFilter(1, "foo");
+    };
+    expect(badUnexpectedFirstArgTypeFn).to.throws(Error);
+  });
 });
+

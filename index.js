@@ -6,8 +6,9 @@
  * @return filtered JSON object
  */
 function jsonPropsFilter(targetData, deletedKeys) {
-  if (!targetData) {
-    throw new Error('undefined has specified as 1st parameter. It should be string or JSON Object');
+  if (!targetData || typeof(targetData) == "number") {
+    throw new Error('undefined has specified as 1st parameter.'+
+        'The parameter should be string or JSON Object');
   }
   // shallow copy the data in order to keep original data
   // NOTE: following semantics introduced from ES2016
