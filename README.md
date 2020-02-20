@@ -18,9 +18,9 @@ const result = jsonPropsFilter(data1, "foo");
 // then you can get filtered data => {bar: "baz" }; 
 
 // also you can remove the data from array at once
-const data2 = { foo: "bar", bar: "baz", baz: "foo"};
-const result2 = jsonPropsFilter(["foo", "bar"], data2);
-// you can get filtered data => {baz: "foo" }; 
+const data2 = { foo: "bar", bar: "baz", baz: "bug" };
+const result3 = jsonPropsFilter(data2, ["foo", "bar"]);
+// you can get filtered data => {baz: "bug" }; 
 
 
 ```
