@@ -15,13 +15,21 @@ This module is written in pure JavaScript :).
 const data = { foo: "bar", bar: "baz" };
 // remove foo property data
 const result = jsonPropsFilter(data1, "foo");
+// then you can get filtered data => {bar: "baz" }; 
+
+// also you can remove the data from array at once
+const data2 = { foo: "bar", bar: "baz", baz: "foo"};
+const result2 = jsonPropsFilter(["foo", "bar"], data2);
+// you can get filtered data => {baz: "foo" }; 
+
+
 ```
 
 Please check the example codes in the repository.
 - example/basic_usage.js
 
 ## Install
-TBD
+npm i json-props-filter
 
 ## Licence
 MIT
